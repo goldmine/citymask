@@ -1,0 +1,21 @@
+<ul>
+  <li><%= link_to '首页', index_url %></li>
+  <li><hr size="1" width="90%" align="left"/></li>
+
+  <% if is_logged_in? %>
+    <li>我的昵称: <i><%= logged_in_user.username %></i></li>
+    <li><%= link_to '帐户中心', edit_user_path(logged_in_user) %></li>
+    <li><%= link_to '登出', {:controller => 'account', :action => 'logout'}, 
+                               :method => :post %></li>
+  <% else %>
+    <li><%= link_to '注册', :controller => 'users', :action => 'new' %></li>
+    <li><%= link_to '登陆', :controller => 'account', :action => 'login' %></li>
+  <% end %>        	
+
+  <% if logged_in_user and logged_in_user.has_role?('administrator') %>
+    <li><hr size="1" width="90%" align="left"/></li>	
+    <li><b>Admin Options</b></li>
+    <li><%= link_to '管理站内用户', users_path %></li>      
+    <li><%= link_to '管理站点新闻', pages_path %></li>	
+  <% end %>
+</ul>
