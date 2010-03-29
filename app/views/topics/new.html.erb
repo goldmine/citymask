@@ -1,0 +1,6 @@
+<h2>New Topic</h2>
+<% form_for :topic, :url => topics_path(:forum_id => @forum) do |f| -%>
+  <p>Subject:<br /><%= f.text_field :title, :size => 40 -%></p>
+  <p>Body:<br /><%= text_area :body, :rows => 8, :cols => 60 -%></p>
+  <%= submit_tag 'Save' %>  
+<% end -%>

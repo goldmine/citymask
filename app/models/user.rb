@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :roles
   
+  has_many :topics
+  has_many :posts
+  
   
   def before_save
     self.hashed_password = User.encrypt(password) if !self.password.blank?

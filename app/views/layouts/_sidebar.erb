@@ -1,5 +1,6 @@
 <ul>
   <li><%= link_to '首页', index_url %></li>
+  <li><%= link_to '论坛', :controller => 'forums', :action => 'index' %></li>
   <li><hr size="1" width="90%" align="left"/></li>
 
   <% if is_logged_in? %>

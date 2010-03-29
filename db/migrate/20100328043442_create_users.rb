@@ -6,6 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :hashed_password, :limit => 64
       t.boolean :enabled, :default => true, :null => false
       t.datetime :last_login_at
+      t.integer :topics_count, :null => false, :default => 0
+      t.integer :posts_count, :null => false, :default => 0
+      
       t.timestamps
     end
   end

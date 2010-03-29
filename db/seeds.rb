@@ -7,10 +7,11 @@
 #   Major.create(:name => 'Daley', :city => cities.first)
 
 Role.create(:name => 'Administrator')
+Role.create(:name => 'Moderator')
 
 admin_user = User.create(:username => 'Admin', 
                          :email => 'admin@citymask.com',
                          :password => '123456', 
                          :password_confirmation => '123456')
-admin_role = Role.find_by_name('Administrator')
+admin_role = Role.all
 admin_user.roles << admin_role

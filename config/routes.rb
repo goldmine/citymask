@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :posts
+
+  map.resources :topics
+
+  map.resources :forums
+
   map.resources :pages
   
   map.resources :users, :member => { :enable => :put } do |users|

@@ -30,4 +30,8 @@ module  LoginSystem
   def check_admin_role
     check_role('Administrator')
   end
+  
+  def check_moderator_role
+    check_role('Moderator')
+  end
 end
