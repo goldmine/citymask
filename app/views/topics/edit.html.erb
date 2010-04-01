@@ -2,7 +2,7 @@
 
 <%= error_messages_for :topic %>
 
-  <% form_for(:topic, :url => topic_path(:id => @topic, :forum_id => @topic.forum),
+  <% form_for(:topic, :url => forum_topic_path(:id => @topic, :forum_id => @forum),
        :html => { :method => :put }) do |f| %>
     <p>Subject:<br /><%= f.text_field :title, :size => 40 -%></p>
 	<p>Body:<br /><%= text_area :body, :rows => 8, :cols => 60 -%></p>

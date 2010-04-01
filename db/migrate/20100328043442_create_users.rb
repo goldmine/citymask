@@ -8,7 +8,11 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :last_login_at
       t.integer :topics_count, :null => false, :default => 0
       t.integer :posts_count, :null => false, :default => 0
-      
+      t.string :blog_title
+      t.boolean :enable_comments, :default => true, :null => false
+      t.integer :entries_count, :null => false, :default => 0
+      t.integer :albums_count, :null => false, :default => 0
+      t.integer :photos_count, :null => false, :default => 0
       t.timestamps
     end
   end

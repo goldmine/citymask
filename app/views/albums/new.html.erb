@@ -1,0 +1,18 @@
+<h1>New album</h1>
+
+<% form_for :album, :url => user_albums_path(@user) do |f| %>
+  <%= f.error_messages %>
+	<p>
+  <%= f.label :name, "像册名称" %>
+ 	</p>
+  <%= f.text_field :name %>
+	<p>
+  <%= f.label :description, "像册介绍" %>
+	</p>
+  <%= f.text_area :description %>
+	<p>
+    <%= f.submit 'Create' %>
+	</p>
+<% end %>
+
+<%= link_to 'Back', user_albums_path(@user) %>

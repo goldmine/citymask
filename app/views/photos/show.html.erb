@@ -1,0 +1,17 @@
+<h3>
+  <%= link_to "#{@user.username}'s Photos", 
+              user_album_photos_path(@user,@album) %>
+</h3>
+<h2><%=h @photo.title %></h2>
+<p><%=h @photo.description %>
+
+<% if is_logged_in? && @photo.user_id == logged_in_user.id %>
+  <p>
+    <%= link_to 'Edit', edit_user_album_photo_path(@user, @album, @photo) %>, 
+    <%= link_to 'Delete', user_album_photo_path(@user, @album, @photo), 
+                                          :confirm => 'Are you sure?', 
+                                          :method => :delete %>
+  </p>
+<% end %>
+
+<%= image_tag @photo.public_filename, :id => 'photo' %>

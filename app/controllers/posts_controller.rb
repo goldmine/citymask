@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @posts = Post.paginate :page => params[:page], 
                            :include => :user,
                            :conditions => ['topic_id = ?', @topic],
-                           :order => 'updated_at DESC'
+                           :order => 'updated_at ASC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     @post.topic = @topic
     
     respond_to do |format|
-      if @post.save
+      if @post.save && @topic.update_attributes(:updated_at => Time.now)
         flash[:notice] = 'Post was successfully created.'
         format.html { redirect_to(forum_topic_posts_path(:forum_id => @forum, :topic_id => @topic)) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }

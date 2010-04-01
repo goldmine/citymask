@@ -1,14 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :posts
-
-  map.resources :topics
-
-  map.resources :forums
-
-  map.resources :pages
   
-  map.resources :users, :member => { :enable => :put } do |users|
-    users.resources :roles
+  map.resources :blogs
+  map.resources :pages 
+  map.resources :users, :member => { :enable => :put } do |u|
+    u.resources :roles
+    u.resources :entries do |e|
+      e.resources :comments
+    end
+    u.resources :albums do |a|
+      a.resources :photos
+    end
   end
   
   map.resources :forums do |f|
@@ -17,10 +18,10 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   
+  map.photos '/photos', :controller => 'photos', :action => 'recent_photos' 
   map.show_user 'user/:username', :controller => 'users', :action => 'show_by_name'
   map.login '/login', :controller => 'account', :action => 'login'
   map.signup '/signup', :controller => 'users', :action => 'new'
-
   map.index '/', :controller => 'pages', :action => 'index'
  
   # The priority is based upon order of creation: first created -> highest priority.

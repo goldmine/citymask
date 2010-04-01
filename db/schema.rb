@@ -9,7 +9,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100329015359) do
+ActiveRecord::Schema.define(:version => 20100401051837) do
+
+  create_table "albums", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photos_count", :default => 0,    :null => false
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "public",       :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "entry_id"
+    t.integer  "user_id"
+    t.string   "guest_name"
+    t.string   "guest_email"
+    t.string   "guest_url"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entries", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "comments_count", :default => 0, :null => false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -28,10 +58,34 @@ ActiveRecord::Schema.define(:version => 20100329015359) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "album_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content_type", :limit => 100
+    t.string   "filename"
+    t.string   "path"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "about_me"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,6 +119,11 @@ ActiveRecord::Schema.define(:version => 20100329015359) do
     t.datetime "last_login_at"
     t.integer  "topics_count",                   :default => 0,    :null => false
     t.integer  "posts_count",                    :default => 0,    :null => false
+    t.string   "blog_title"
+    t.boolean  "enable_comments",                :default => true, :null => false
+    t.integer  "entries_count",                  :default => 0,    :null => false
+    t.integer  "albums_count",                   :default => 0,    :null => false
+    t.integer  "photos_count",                   :default => 0,    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

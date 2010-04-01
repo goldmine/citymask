@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
   
   has_many :topics
   has_many :posts
+  has_many :comments
+  has_many :entries
+  has_many :albums
+  has_many :photos, :through => :albums
+  
   
   
   def before_save

@@ -13,7 +13,7 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td class="name">
       <div class="forumname">
-        <%= link_to forum.name, topics_path(:forum_id => forum) -%>
+        <%= link_to forum.name, forum_topics_path(:forum_id => forum) -%>
       </div>      
 
       <div class="forumdescription">
