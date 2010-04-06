@@ -1,14 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  
+  map.resources :tags
   map.resources :blogs
   map.resources :pages 
   map.resources :users, :member => { :enable => :put } do |u|
     u.resources :roles
+    u.resources :tags, :controller => 'user_tags'
     u.resources :entries do |e|
       e.resources :comments
     end
     u.resources :albums do |a|
-      a.resources :photos
+      a.resources :photos, :member => { :add_tag => :put, :remove_tag => :delete }
     end
   end
   

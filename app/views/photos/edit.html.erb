@@ -5,6 +5,19 @@
 
 <%= error_messages_for :photo %>
 
+<h3>Tags</h3>
+<ul id="taglist">
+  <%= render :partial => 'edit_tag', :collection => @photo.tags %>
+</ul>
+
+<% remote_form_for(:tag,
+                   :url => add_tag_user_album_photo_path(:user_id => @user, :album_id => @album, :id => @photo),
+                   :html => { :method => :put },
+                   :complete => "Field.clear('tag-name')") do |f| %>
+  <%= f.text_field :name, :id => 'tag-name' %>
+  <%= submit_tag 'Add Tag' %>
+<% end %>
+
 <% form_for(:photo, 
             :url => user_album_photo_path(@user, @album, @photo), 
             :html => { :method => :put }) do |f| %>

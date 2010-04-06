@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @entries = Entry.find_all_by_user_id(@user)
   end
 
   def new

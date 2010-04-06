@@ -90,6 +90,25 @@ class PhotosController < ApplicationController
     end
   end
   
+  def add_tag
+    @photo = @user.photos.find(params[:id])
+    @photo.tag_list << params[:tag][:name]
+    @photo.save
+    @new_tag = @photo.reload.tags.last
+    
+  end
+  
+  def remove_tag
+    @photo = @user.photos.find(params[:id])
+    @tag_to_delete = @photo.tags.find(params[:tag_id])
+    if @tag_to_delete
+      @photo.tags.delete(@tag_to_delete)
+    else
+      render :nothing =>  true
+    end 
+
+  end
+  
   protected
   def find_user_album
     @user = User.find(params[:user_id]) if params[:user_id]

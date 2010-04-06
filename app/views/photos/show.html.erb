@@ -4,6 +4,12 @@
 </h3>
 <h2><%=h @photo.title %></h2>
 <p><%=h @photo.description %>
+	
+<p>标签：
+<% @photo.tags.each do |tag| %>
+ <%= link_to tag.name, user_tag_path(@photo.user, tag.name) %>	
+<% end %>
+</p>
 
 <% if is_logged_in? && @photo.user_id == logged_in_user.id %>
   <p>

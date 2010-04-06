@@ -2,3 +2,34 @@
 
 <p>Member since <%= @user.created_at.to_s(:long) %></p>
 
+
+<h3>Blog Entries</h3>
+<ul id="entries">
+	<% if !@entries.blank? %>
+	  <% for entry in @entries %>
+       <li>
+         <%= link_to entry.title, 
+                  user_entry_path(:user_id => @user, :id => entry) %>
+       </li>
+      <% end %>
+	<% end %>
+</ul>
+<p>
+  <%= link_to "See all of #{@user.username}'s blog", 
+              user_entries_path(:user_id => @user) %>
+</p>
+
+<h3>Photos</h3>
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>
+<p>
+
+  <%= link_to "See all of #{@user.username}'s ", 
+              user_albums_path(:user_id => @user) %>
+</p>
+
+<p>
+  <%= link_to "#{@user.username}'s Tags",
+        user_tags_path(:user_id => @user) %>
+</p>

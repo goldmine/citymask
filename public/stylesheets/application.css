@@ -62,6 +62,13 @@ table#posts td.body   { width: 80% }
 .forumdescription { font-size: 0.7em; padding-top: 0.4em; }
 
 
+/* Tag Cloud */
+.tag1 { font_size: 100%;}
+.tag2 { font_size: 120%;}
+.tag3 { font_size: 140%;}
+.tag4 { font_size: 160%;}
+.tag5 { font_size: 170%;}
+.tag6 { font_size: 180%;}
 
 
 #flash_notice, #flash_error {
